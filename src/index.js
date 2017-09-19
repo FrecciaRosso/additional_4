@@ -1,15 +1,15 @@
 module.exports = function multiply(first, second) {
   // your solution
- 	if (number1 == "0" || number2 == "0") {
+ 	if (first == "0" || second == "0") {
 		return "0";
 	}
 	
-	if (number1.length == 0 || number2.length == 0) {
+	if (first.length == 0 || second.length == 0) {
 		return "";
 	}
 	
-	var reversed1 = number1.split('').reverse();
-	var reversed2 = number2.split('').reverse();
+	var reversed1 = first.split('').reverse();
+	var reversed2 = second.split('').reverse();
 	var calculationMatrix = [];
 	for (var i = 0; i < reversed1.length + reversed2.length + 1; i++) {
 		calculationMatrix[i] = '0';
