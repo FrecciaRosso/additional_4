@@ -1,44 +1,32 @@
 module.exports = function multiply(first, second) {
   // your solution
-/*   var result = first * second + "";
-  if (result.indexOf("e") > -1) {
-	  var fractionNumber = result.split("e+")[0];
-	  var wholePart = fractionNumber.split(".")[0];
-	  var fractionPart = fractionNumber.split(".")[1];
-	  var zerosNumber = +result.split("e+")[1] - fractionPart.length;
-	  var zerosString = "";
-	  for (var i = 1; i <= zerosNumber; i++) {
-		  zerosString += "0";
-	  }
-	  
-	  result = wholePart + fractionPart + zerosString;
-  }
-  return result; */
-  if (first.length == 0 || second.length == 0) {
-		return "";
-	}
-	if (first == "0" || second == "0") {
+ 	if (number1 == "0" || number2 == "0") {
 		return "0";
 	}
-	var c1 = first.split('').reverse();
-	var c2 = second.split('').reverse();
-	var c = [];
-	for (var i = 0; i < c1.length + c2.length + 1; i++) {
-		c[i] = '0';
+	
+	if (number1.length == 0 || number2.length == 0) {
+		return "";
 	}
-	for (var i = 0; i < c2.length; i++) {
-		var dig2 = parseInt(c2[i]);
-		var carry = 0;
-		for (var j = 0; j < c1.length; j++) {
-			var dig1 = parseInt(c1[j]);
-			var temp = parseInt(c[i + j]);
-			var cur = dig1 * dig2 + temp + carry;
-			c[i + j] =cur % 10 + '';
-			carry = parseInt(cur / 10);
+	
+	var reversed1 = number1.split('').reverse();
+	var reversed2 = number2.split('').reverse();
+	var calculationMatrix = [];
+	for (var i = 0; i < reversed1.length + reversed2.length + 1; i++) {
+		calculationMatrix[i] = '0';
+	}
+	for (var i = 0; i < reversed2.length; i++) {
+		var digit2 = parseInt(reversed2[i]);
+		var caret = 0;
+		for (var j = 0; j < reversed1.length; j++) {
+			var digit1 = parseInt(reversed1[j]);
+			var temp = parseInt(calculationMatrix[i + j]);
+			var current = digit1 * digit2 + temp + caret;
+			calculationMatrix[i + j] = current % 10 + '';
+			caret = parseInt(current / 10);
 		}
-		c[i + c1.length] = carry + '';
+		calculationMatrix[i + reversed1.length] = caret + '';
 	}
-	var result = c.reverse().join("");
+	var result = calculationMatrix.reverse().join("");
 	console.log(result);
 	var pos = 0;
 	while(result.charAt(pos) == '0' && pos < result.length) {
